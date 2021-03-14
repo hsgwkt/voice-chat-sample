@@ -5,20 +5,28 @@
 <title>skyway sample</title>
 
 <form id="join-form">
-  名前 <small>(半角英数)</small>:
-  <input id="my-id" required pattern="^[a-zA-Z0-9 _-]+$">
+  <input id="my-id" required placeholder="名前 (半角英数)" pattern="^[a-zA-Z0-9 _-]+$">
   <button id="join">ログイン</button>
   <button id="leave" type="button" hidden>ログアウト</button>
 </form>
 
 <div id="users"></div>
 
-<ul id="readme" hidden>
-  <li>普段の声は小さく聞こえます</li>
-  <li>人を選ぶとグループになります</li>
-  <li>グループ内は声が通常の大きさに戻ります</li>
-  <li>マウスホバーで聞き耳を立てます</li>
-</ul>
+<div id="readme" hidden>
+  使い方
+  <ul>
+    <li>普段の声は小さく聞こえます</li>
+    <li>人を選ぶとグループになります</li>
+    <li>グループ内は声が通常の大きさに戻ります</li>
+    <li>マウスホバーで聞き耳を立てます</li>
+  </ul>
+  TODO
+  <ul>
+    <li>グループを作ったら相手に通知を飛ばす</li>
+    <li>全員に呼びかけるボタン</li>
+    <li>グループ内外それぞれのテキストチャット</li>
+  </ul>
+</div>
 
 <script src="https://cdn.webrtc.ecl.ntt.com/skyway-4.4.0.min.js"></script>
 
@@ -235,16 +243,40 @@
 </script>
 
 <style>
+  #join-form {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    margin: 30px 20px;
+    font-size: 14px;
+  }
+
+  #join-form button,
+  #join-form input {
+    font-family: inherit;
+    font-size: 12px;
+    line-height: 1;
+    padding: 0 12px;
+    height: 2.6em;
+    box-sizing: border-box;
+  }
+
   #users {
-    margin: 30px 0;
+    margin: 40px 30px;
     font-size: 16px;
   }
 
   #readme {
-    margin: 30px 0;
+    margin: 30px 20px;
     color: #666;
     font-size: 12px;
     line-height: 2;
+  }
+
+  #readme ul {
+    margin-top: 0;
+    padding-left: 20px;
   }
 
   .group {
