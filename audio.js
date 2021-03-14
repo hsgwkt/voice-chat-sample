@@ -68,7 +68,7 @@ export async function getAudio(stream) {
   const mediaSourceNode = ctx.createMediaStreamSource(stream)
   // const gainNode = ctx.createGain()
 
-  // Chromeで音が鳴らないバグ対策。Audioで音を出す訳ではない
+  // Chromeで音が鳴らないバグ対策
   // https://blog.twoseven.xyz/chrome-webrtc-remote-volume/
   const audio = new Audio()
   // audio.muted = true
