@@ -95,7 +95,7 @@ function analyze() {
     analyserNode.getByteTimeDomainData(times)
     cb(times.reduce((p, n) => Math.max(p, n > 128 ? n - 128 : 128 - n), 0) / 128)
   }
-  analyzeTimer = setTimeout(analyze, 200)
+  analyzeTimer = setTimeout(analyze, 100)
 }
 
 async function addAnalyze(audioNode, cb) {
@@ -104,11 +104,11 @@ async function addAnalyze(audioNode, cb) {
 
   audioNode.connect(analyserNode)
   analyserNode.smoothingTimeConstant = 0.5
-  analyserNode.fftSize = 256
+  analyserNode.fftSize = 512
   analyses.push({ audioNode, analyserNode, cb })
 
   if (!analyzeTimer) {
-    analyzeTimer = setTimeout(analyze, 200)
+    analyzeTimer = setTimeout(analyze, 100)
   }
 }
 
