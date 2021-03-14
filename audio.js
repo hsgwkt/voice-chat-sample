@@ -22,9 +22,8 @@ export async function getLocalAudio() {
 
   const ctx = await audioContextPromise
   const mediaSourceNode = ctx.createMediaStreamSource(stream)
-  const mediaDestNode = ctx.createMediaStreamDestination()
-
-  mediaSourceNode.connect(mediaDestNode)
+  // const mediaDestNode = ctx.createMediaStreamDestination()
+  // mediaSourceNode.connect(mediaDestNode)
 
   function onAnalyze(cb) {
     addAnalyze(mediaSourceNode, cb)
@@ -54,26 +53,28 @@ export async function getLocalAudio() {
   //   }
   // })
 
-  return { stream: mediaDestNode.stream, destroy, onAnalyze }
+  // return { stream: mediaDestNode.stream, destroy, onAnalyze }
+  return { stream, destroy, onAnalyze }
 }
 
 export async function getAudio(stream) {
   const ctx = await audioContextPromise
   const mediaSourceNode = ctx.createMediaStreamSource(stream)
-  const gainNode = ctx.createGain()
+  // const gainNode = ctx.createGain()
 
   // Chromeで音が鳴らないバグ対策。Audioで音を出す訳ではない
   // https://blog.twoseven.xyz/chrome-webrtc-remote-volume/
   const audio = new Audio()
-  audio.muted = true
+  // audio.muted = true
   audio.srcObject = stream
   audio.play()
 
-  mediaSourceNode.connect(gainNode)
-  gainNode.connect(ctx.destination)
+  // mediaSourceNode.connect(gainNode)
+  // gainNode.connect(ctx.destination)
 
   function setVolume(value) {
-    gainNode.gain.value = value
+    // gainNode.gain.value = value
+    audio.volume = value
   }
 
   function onAnalyze(cb) {
