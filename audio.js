@@ -103,8 +103,8 @@ async function addAnalyze(audioNode, cb) {
   const analyserNode = ctx.createAnalyser()
 
   audioNode.connect(analyserNode)
-  analyserNode.smoothingTimeConstant = 0.5
-  analyserNode.fftSize = 512
+  // analyserNode.smoothingTimeConstant = 0.5
+  // analyserNode.fftSize = 2048
   analyses.push({ audioNode, analyserNode, cb })
 
   if (!analyzeTimer) {
