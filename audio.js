@@ -17,7 +17,13 @@ const audioContextPromise = userActionPromise.then(async () => {
 
 export async function getLocalAudio() {
   const stream = await navigator.mediaDevices.getUserMedia({
-    audio: true,
+    audio: {
+      autoGainControl: true,
+      echoCancellation: true,
+      echoCancellationType: 'system',
+      latency: 0.01,
+      noiseSuppression: true,
+    },
   })
 
   const ctx = await audioContextPromise
